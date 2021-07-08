@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.altran.gdc.robotframework.testfxlibrary.keywords.Timeout;
@@ -8,7 +9,7 @@ import com.altran.gdc.robotframework.testfxlibrary.utils.TimeoutConstants;
 import org.robotframework.javalib.library.AnnotationLibrary;
 
 import com.altran.gdc.robotframework.testfxlibrary.utils.Javadoc2Libdoc;
-import org.robotframework.javalib.library.RobotJavaLibrary;
+import org.robotframework.javalib.library.RobotFrameworkDynamicAPI;
 import org.robotframework.remoteserver.RemoteServer;
 
 /**
@@ -94,7 +95,7 @@ import org.robotframework.remoteserver.RemoteServer;
 
 //This class can't be moved to a named package.
 //Is necessary to have the class in the root path, otherwise the lib doesn't work in the RobotFramework.
-public class TestFXLibrary extends AnnotationLibrary implements RobotJavaLibrary {
+public class TestFXLibrary extends AnnotationLibrary implements RobotFrameworkDynamicAPI {
 
     /**
      * The list of keyword patterns for the AnnotationLibrary
@@ -149,8 +150,8 @@ public class TestFXLibrary extends AnnotationLibrary implements RobotJavaLibrary
     // ******************************
 
     @Override
-    public Object runKeyword(String keywordName, Object[] args) {
-        return super.runKeyword(keywordName, toStrings(args));
+    public Object runKeyword(String keywordName, List args) {
+        return super.runKeyword(keywordName, args);
     }
 
     @Override
@@ -166,27 +167,14 @@ public class TestFXLibrary extends AnnotationLibrary implements RobotJavaLibrary
         return keywordDocumentation;
     }
 
+    @Override
+    public List<String> getKeywordNames() {
+        return super.getKeywordNames();
+    }
+
     // ******************************
     // Internal Methods
     // ******************************
-
-    /**
-     * Convert all arguments in the object array to string
-     *
-     * @param args The arguments
-     * @return The arguments converted in String
-     */
-    protected Object[] toStrings(Object[] args) {
-        Object[] newArgs = new Object[args.length];
-        for (int i = 0; i < newArgs.length; i++) {
-            if (args[i].getClass().isArray()) {
-                newArgs[i] = args[i];
-            } else {
-                newArgs[i] = args[i].toString();
-            }
-        }
-        return newArgs;
-    }
 
     /**
      * Set default timeouts
@@ -205,9 +193,8 @@ public class TestFXLibrary extends AnnotationLibrary implements RobotJavaLibrary
     public static void main(String[] args) throws Exception {
         // use jrobotremoteserver to start library as a server in port 8270
         RemoteServer.configureLogging();
-        RemoteServer server = new RemoteServer();
+        RemoteServer server = new RemoteServer(8270);
         server.putLibrary("/", new TestFXLibrary());
-        server.setPort(8270);
         server.start();
     }
 }

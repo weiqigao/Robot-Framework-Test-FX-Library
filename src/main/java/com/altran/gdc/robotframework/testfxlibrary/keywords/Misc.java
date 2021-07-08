@@ -105,7 +105,7 @@ public class Misc {
      *  The applicationKey that can be used with closeApplication.
      */
     @RobotKeyword
-    @ArgumentNames({"className" , "distinctiveName=null", "*args=null"})
+    @ArgumentNames({"className" , "distinctiveName=null", "*args"})
     public String startApplication(String className, String distinctiveName, String... args){
 
         TestFxLibraryValidation.validateArguments(className, distinctiveName);

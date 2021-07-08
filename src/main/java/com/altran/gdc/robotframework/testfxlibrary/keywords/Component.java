@@ -3,6 +3,7 @@ package com.altran.gdc.robotframework.testfxlibrary.keywords;
 import com.altran.gdc.robotframework.testfxlibrary.exceptions.TestFxLibraryNonFatalException;
 import com.altran.gdc.robotframework.testfxlibrary.utils.TestFxLibraryValidation;
 import javafx.scene.control.Control;
+import org.awaitility.core.ConditionTimeoutException;
 import org.robotframework.javalib.annotation.ArgumentNames;
 import org.robotframework.javalib.annotation.Autowired;
 import org.robotframework.javalib.annotation.RobotKeyword;
@@ -57,7 +58,14 @@ public class Component {
     @ArgumentNames({"identifier"})
     public int getMatchingLocatorCount(String identifier){
         TestFxLibraryValidation.validateArguments(identifier);
-        wait.waitUntilPageContains(identifier);
+
+        try {
+            wait.waitUntilPageContains(identifier);
+        } catch (ConditionTimeoutException e) {
+            //Silently ignore TimeoutException and return 0. (Expl.: Count should be 0 when no element found with given identifier.)
+            return 0;
+        }
+
         java.util.ArrayList<Object> count = new ArrayList<>();
         count.addAll(new FxRobot().lookup(identifier).queryAll());
         return count.size();
