@@ -8,8 +8,9 @@ Suite Teardown    Close Application
 Test Get List Items From ListView
     @{default_list_items}=      Set Variable    one     two     three      four     five    six     seven   eight
     @{list_items}=    Get List Items From ListView  \#listviewsimple
-    :FOR    ${item}    IN    @{list_items}
-    \    Should Contain     "${default_list_items}"     ${item}
+    FOR    ${item}    IN    @{list_items}
+        Should Contain     "${default_list_items}"     ${item}
+    END
 
 Test Get Selected Items From List
     ${default_list_item}=   Set Variable    one
@@ -77,8 +78,9 @@ Test List Selection Should Be
     @{should_be_selected}=      Set Variable    two     three    five
     Select Items From List View     \#listviewsimple    ${items_selection}
     ${selected_items}=   Get Selected Items From List   \#listviewsimple
-    :FOR    ${item}    IN    @{should_be_selected}
-    \    Should Contain     "${selected_items}"     ${item}
+    FOR    ${item}    IN    @{should_be_selected}
+        Should Contain     "${selected_items}"     ${item}
+    END
 
 Test Select Items From List View
     Clear Selection From List     \#listviewsimple

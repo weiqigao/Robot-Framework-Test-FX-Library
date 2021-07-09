@@ -10,6 +10,10 @@ Test Get Matching Locator Count
     ${locator_count}=   Get Matching Locator Count    .button
     Should Be Equal     ${locator_count}    ${${default_btn_number}}
 
+Test Get Matching Locator Count not exist
+    ${locator_count}=   Get Matching Locator Count    .not_exist
+    Should Be Equal     ${locator_count}    0
+
 Test Get Tooltip Text
     ${default_tooltip}=    Set Variable    Test Tooltip
     ${tooltip_text}=     Get Tooltip Text    \#btntooltip

@@ -40,8 +40,9 @@ Test Capture Screen
     Capture Screen
     Capture Screen
     Capture Screen
-    :FOR    ${index}  IN RANGE    1   4
-    \   File Should Exist   ${screens_directory}${screen_name}${index}.${file_format}
+    FOR    ${index}  IN RANGE    1   4
+        File Should Exist   ${screens_directory}${screen_name}${index}.${file_format}
+    END
 
 Test Get Component Position
     @{comp_position}=       Get Component Position      \#listviewsimple

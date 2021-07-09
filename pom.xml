@@ -10,7 +10,7 @@
 
     <groupId>com.altran.gdc</groupId>
     <artifactId>robotframework-TestFXLibrary</artifactId>
-    <version>1.1.1</version>
+    <version>2.0.0</version>
 
     <name>Test Library - robotframework-TestFXLibrary</name>
     <url>http://www.company.com/department/project</url>
@@ -21,7 +21,7 @@
         <downloadJavados>true</downloadJavados>
         <java.version>11</java.version>
         <openjfx.version>11.0.2</openjfx.version>
-        <robotframework.version>3.1.1</robotframework.version>
+        <robotframework.version>4.0.3</robotframework.version>
         <xml.doclet.version>1.0.5</xml.doclet.version>
         <keywords.class>TestFXLibrary</keywords.class>
     </properties>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>org.robotframework</groupId>
             <artifactId>javalib-core</artifactId>
-            <version>1.2.1</version>
+            <version>2.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.testfx</groupId>
@@ -70,7 +70,7 @@
         <dependency>
             <groupId>org.testfx</groupId>
             <artifactId>testfx-core</artifactId>
-            <version>4.0.15-alpha</version>
+            <version>4.0.16-alpha</version>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -89,9 +89,9 @@
             <version>3.1.5</version>
         </dependency>
         <dependency>
-            <groupId>com.github.ombre42</groupId>
+            <groupId>org.robotframework</groupId>
             <artifactId>jrobotremoteserver</artifactId>
-            <version>3.0</version>
+            <version>4.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

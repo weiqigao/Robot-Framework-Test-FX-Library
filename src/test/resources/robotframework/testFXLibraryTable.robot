@@ -31,8 +31,9 @@ Test Get Table Headers
 Test Get Table Values
     ${count}=    Get Table Values  \#tableView
     ${values}=  Set Variable    Jacob   Smith  jacob.smith@example.com      Isabella    Johnson     isabella.johnson@example.com    Ethan    Williams    ethan.williams@example.com      Emma    Jones   emma.jones@example.com      Michael     Brown       michael.brown@example.com
-    :FOR    ${item_it}    IN    @{values}
-    \    Should Contain     "${count}"     ${item_it}
+    FOR    ${item_it}    IN    @{values}
+        Should Contain     "${count}"     ${item_it}
+    END
 
 Test Get Table Cell Value
     ${count}    Get Table Cell Value  \#tableView   0   2
